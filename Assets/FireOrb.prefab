@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1249682171028476676}
   - component: {fileID: 6602537611226579884}
   - component: {fileID: 7652483373927721444}
+  - component: {fileID: -2738980639690624239}
   m_Layer: 3
   m_Name: FireOrb
   m_TagString: Element
@@ -100,7 +101,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnPickup: 0
   dropOnSwitch: 0
+--- !u!114 &-2738980639690624239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9160834984098164927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 638869e1424bee0418825885f475b273, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3

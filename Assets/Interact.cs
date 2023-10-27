@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,8 +32,22 @@ public class Interact : MonoBehaviour
             }
         }
 
+        if(holdPoint.childCount > 0)
+        {
+            var heldItem = holdPoint.GetChild(0);
+            if (heldItem.GetComponent<ElementalOrb>())
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    heldItem.GetComponent<ElementalOrb>().Use();
+                }
+            }
+        }
+
         if (Physics.Raycast(rayStart.position, Camera.main.transform.forward, out RaycastHit hit, range, interactableLayer))
         {
+
+            
 
             if (hit.transform.GetComponent<Pickupable>())
             {
@@ -43,19 +58,103 @@ public class Interact : MonoBehaviour
                     Grab(hit.transform);
                 }
             }
-            else if (holdPoint.childCount > 0 && hit.transform.GetComponent<ItemHolder>().CanPlace(holdPoint.GetChild(0).tag))
+            else if (hit.transform.GetComponent<EnvironmentElement>())
             {
-                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
+
+                var elem = hit.transform.GetComponent<EnvironmentElement>().type;
 
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    Drop(hit.transform);
+
+                    if (holdPoint.childCount > 0)
+                    {
+                        Destroy(holdPoint.GetChild(0).gameObject);
+                    }
+
+                    switch (elem)
+                    {
+                        case EnvironmentElement.ElementType.FIRE:
+
+                            GameObject fire = Instantiate(Elements.Instance.fireOrb, holdPoint);
+                            fire.transform.localPosition = Vector3.zero;
+                            break;
+
+                        case EnvironmentElement.ElementType.AIR:
+
+                            GameObject air = Instantiate(Elements.Instance.airOrb, holdPoint);
+                            air.transform.localPosition = Vector3.zero;
+                            break;
+
+                        case EnvironmentElement.ElementType.EARTH:
+
+                            GameObject earth = Instantiate(Elements.Instance.earthOrb, holdPoint);
+                            earth.transform.localPosition = Vector3.zero;
+                            break;
+
+                        case EnvironmentElement.ElementType.WATER:
+
+                            GameObject water = Instantiate(Elements.Instance.waterOrb, holdPoint);
+                            water.transform.localPosition = Vector3.zero;
+                            break;
+
+                        case EnvironmentElement.ElementType.STEAM:
+
+                            GameObject steam = Instantiate(Elements.Instance.steamOrb, holdPoint);
+                            steam.transform.localPosition = Vector3.zero;
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
 
 
+            }
+            else if (hit.transform.CompareTag("DoorButton"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (Level.Instance.turbineOn)
+                    {
+                        hit.transform.parent.GetComponent<Animator>().SetBool("open", true);
+                    }
+                    else
+                    {
+                        Debug.Log("locked");
+                    }
+                }
 
             }
+            else if (holdPoint.childCount > 0)
+            {
+                if (hit.transform.GetComponent<ItemHolder>())
+                {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+                    var heldItem = holdPoint.GetChild(0);
 
+                    if (heldItem.CompareTag("Element"))
+                    {
+                        if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
+                        {
+                            Drop(hit.transform);
+                            heldItem.GetComponent<ElementalOrb>().enabled = false;
+                        }
+                    }
+                    if (heldItem.CompareTag("Untagged"))
+                    {
+                        if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.DEFAULT))
+                        {
+                            Drop(hit.transform);
+                        }
+                    }
+
+
+                }
+
+            }
 
 
             //switch (hit.transform.tag)
@@ -78,6 +177,7 @@ public class Interact : MonoBehaviour
             UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
         }
     }
+
 
     void Grab(Transform hitObj)
     {
@@ -111,6 +211,10 @@ public class Interact : MonoBehaviour
         else
         {
             Transform obj = Instantiate(hitObj, holdPoint);
+            if (obj.CompareTag("Element"))
+            {
+                obj.GetComponent<ElementalOrb>().enabled = true;
+            }
             obj.localPosition = Vector3.zero;
             hitObj.GetComponent<Pickupable>().OnPickup();
         }

@@ -8,11 +8,12 @@ public class ItemHolder : MonoBehaviour
 
     public int maxItems;
     public bool parentToChild;
-    public string preferredTag;
+    public enum PrefferedObject {ELEMENT, DEFAULT};
+    public PrefferedObject prefferedObject;
 
-    public bool CanPlace(string tag)
+    public bool CanPlace(PrefferedObject obj)
     {
-        if(tag == preferredTag)
+        if(obj == prefferedObject)
         {
             if (parentToChild)
             {

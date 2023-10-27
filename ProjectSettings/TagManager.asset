@@ -9,6 +9,11 @@ TagManager:
   - StartClimb
   - EndClimb
   - Element
+  - Water
+  - Rotor
+  - Burnable
+  - Grow
+  - DoorButton
   layers:
   - Default
   - TransparentFX
