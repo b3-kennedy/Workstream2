@@ -41,6 +41,24 @@ public class Interact : MonoBehaviour
                 {
                     heldItem.GetComponent<ElementalOrb>().Use();
                 }
+
+            }
+            else if (heldItem.GetComponent<Tool>())
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    heldItem.GetComponent<Tool>().Use();
+                }
+            }
+
+            if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    heldItem.SetParent(null);
+                    heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                    heldItem.GetComponent<Collider>().enabled = true;
+                }
             }
         }
 
@@ -150,27 +168,9 @@ public class Interact : MonoBehaviour
                             Drop(hit.transform);
                         }
                     }
-
-
                 }
 
             }
-
-
-            //switch (hit.transform.tag)
-            //{
-            //    case "Fire":
-            //        Debug.Log("hit fire");
-            //        break;
-            //    case "Water":
-            //        break;
-            //    case "Earth":
-            //        break;
-            //    case "Air":
-            //        break;
-            //    default:
-            //        break;
-            //}
         }
         else
         {
@@ -198,15 +198,21 @@ public class Interact : MonoBehaviour
             {
                 Destroy(heldObj.gameObject);
             }
-
-            
         }
+
+
 
         if (hitObj.GetComponent<Pickupable>().destroyOnPickup)
         {
             hitObj.SetParent(holdPoint);
             hitObj.localPosition = Vector3.zero;
             hitObj.GetComponent<Pickupable>().OnPickup();
+
+            if (hitObj.GetComponent<Tool>())
+            {
+                hitObj.GetComponent<Tool>().OnPickUp();
+            }
+
         }
         else
         {

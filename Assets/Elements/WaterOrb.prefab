@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+  water: {fileID: 8300000, guid: f62f2cc672855784e8bb03f50fb69998, type: 3}
+  steamAudio: {fileID: 8300000, guid: 978502130e5f14346b9f9d9c7d58dda7, type: 3}

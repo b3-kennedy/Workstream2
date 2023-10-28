@@ -8,6 +8,7 @@ public class AirOrb : ElementalOrb
     float timer;
     public float range;
     public float force;
+    public AudioClip soundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,8 @@ public class AirOrb : ElementalOrb
                 hit.transform.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
             }
         }
+
+        AudioSource.PlayClipAtPoint(soundEffect, transform.position);
     }
 
     // Update is called once per frame

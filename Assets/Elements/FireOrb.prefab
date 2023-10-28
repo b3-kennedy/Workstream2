@@ -133,4 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638869e1424bee0418825885f475b273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hold: 1
   range: 3
+  extinguish: {fileID: 8300000, guid: 978502130e5f14346b9f9d9c7d58dda7, type: 3}
+  flamethrower: {fileID: 8300000, guid: c928446052462254d8b5af5a1b43b438, type: 3}

@@ -7,6 +7,9 @@ public class FireOrb : ElementalOrb
 
     
     public float range;
+    public AudioClip extinguish;
+    public AudioClip flamethrower;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +35,7 @@ public class FireOrb : ElementalOrb
                 Destroy(hit.collider.gameObject);
             }
         }
+        AudioSource.PlayClipAtPoint(flamethrower, transform.position);
     }
 
 
@@ -39,6 +43,7 @@ public class FireOrb : ElementalOrb
     {
         if (other.CompareTag("Water"))
         {
+            AudioSource.PlayClipAtPoint(extinguish, transform.position);
             Destroy(gameObject);
         }
     }
