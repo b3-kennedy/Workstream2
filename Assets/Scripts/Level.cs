@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
@@ -41,6 +42,14 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            var scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+
+        }
+
+
         if (windMill.GetComponent<Windmill>().canRotate)
         {
             waterFall.SetActive(false);
