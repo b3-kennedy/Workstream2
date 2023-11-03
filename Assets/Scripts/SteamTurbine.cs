@@ -81,8 +81,12 @@ public class SteamTurbine : MonoBehaviour
 
         if(water && fire && wood)
         {
-            Level.Instance.puzzleComplete.Invoke();
-            Level.Instance.turbineOn = true;
+            if (Level.Instance)
+            {
+                Level.Instance.puzzleComplete.Invoke();
+                Level.Instance.turbineOn = true;
+            }
+
             titleText.SetActive(false);
             ingredientsText.SetActive(false);
             screen.GetComponent<Renderer>().material = green;

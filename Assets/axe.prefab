@@ -158,6 +158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation: {x: 24.003, y: 207.52002, z: 104.81099}
   range: 3
+  axeHit: {fileID: 8300000, guid: 7b0e49812eac9e94aa65285750fcc6c3, type: 3}
+  axeDamage: 20
 --- !u!54 &2683375924605884974
 Rigidbody:
   m_ObjectHideFlags: 0

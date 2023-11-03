@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wood : Burnable
+public class Cuttable : MonoBehaviour
 {
-    public GameObject charcoal;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +14,5 @@ public class Wood : Burnable
     void Update()
     {
         
-    }
-
-    public override void OnFireDestroy()
-    {
-        //Instantiate(charcoal, transform.position, Quaternion.identity);
     }
 }

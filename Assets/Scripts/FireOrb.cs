@@ -7,8 +7,10 @@ public class FireOrb : ElementalOrb
 
     
     public float range;
+    public float fireDamage;
     public AudioClip extinguish;
     public AudioClip flamethrower;
+    
     
 
     // Start is called before the first frame update
@@ -30,9 +32,19 @@ public class FireOrb : ElementalOrb
         {
             Debug.Log(hit.collider.gameObject);
 
-            if (hit.collider.CompareTag("Burnable"))
+            if (hit.collider.GetComponent<Burnable>())
             {
-                Destroy(hit.collider.gameObject);
+                hit.collider.GetComponent<Burnable>().TakeFireDamage(fireDamage);
+            }
+            else if (hit.collider.CompareTag("ClimbableVines"))
+            {
+                hit.collider.gameObject.SetActive(false);
+            }
+            else if (hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.WATER)
+            {
+                GameObject steam = Instantiate(Elements.Instance.steamElement, hit.point, Quaternion.identity);
+                AudioSource.PlayClipAtPoint(extinguish, hit.point);
+
             }
         }
         AudioSource.PlayClipAtPoint(flamethrower, transform.position);

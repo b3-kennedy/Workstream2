@@ -13,8 +13,6 @@ public class WaterOrb : ElementalOrb
         //temporary raycast, ideally would use particle collision
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
         {
-            Debug.Log(hit.collider.gameObject);
-
             if (hit.collider.CompareTag("Element"))
             {
                 if(hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.FIRE)
@@ -23,6 +21,11 @@ public class WaterOrb : ElementalOrb
                     AudioSource.PlayClipAtPoint(steamAudio, hit.point);
 
                 }
+            }
+            else if (hit.collider.CompareTag("WaterFillZone"))
+            {
+                Debug.Log("fill");
+                hit.collider.GetComponent<FillArea>().Fill();
             }
         }
 
