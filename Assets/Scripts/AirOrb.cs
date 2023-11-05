@@ -25,6 +25,7 @@ public class AirOrb : ElementalOrb
             {
                 hit.collider.gameObject.GetComponent<Windmill>().canRotate = true;
             }
+
             if (hit.transform.GetComponent<Rigidbody>())
             {
                 hit.transform.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);

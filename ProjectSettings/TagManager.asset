@@ -17,6 +17,9 @@ TagManager:
   - ClimbableVines
   - WaterFillZone
   - WaterArea
+  - Rock
+  - Boulder
+  - AirLift
   layers:
   - Default
   - TransparentFX

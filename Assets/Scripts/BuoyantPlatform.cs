@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class BuoyantPlatform : Buoyancy
 {
+    public float playerMultiplier;
+
     private void OnCollisionEnter(Collision other)
     {
         if (other.collider)
         {
-            buoyancyForce *= 2;
+            buoyancyForce *= playerMultiplier;
             playerOnPlatform = true;
         }
     }

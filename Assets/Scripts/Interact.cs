@@ -88,8 +88,23 @@ public class Interact : MonoBehaviour
 
                     if (holdPoint.childCount > 0)
                     {
-                        Destroy(holdPoint.GetChild(0).gameObject);
+                        var heldItem = holdPoint.GetChild(0);
+
+                        if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
+                        {
+
+                            heldItem.SetParent(null);
+                            heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                            heldItem.GetComponent<Collider>().enabled = true;
+                            
+                        }
+                        else
+                        {
+                            Destroy(heldItem.gameObject);
+                        }
                     }
+
+
 
                     switch (elem)
                     {

@@ -5,8 +5,7 @@ using UnityEngine;
 public class Axe : Tool
 {
 
-    public Vector3 rotation;
-    public float range;
+
     public AudioClip axeHit;
     public float axeDamage;
 
