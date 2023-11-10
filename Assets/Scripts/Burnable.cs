@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Burnable : MonoBehaviour
 {
+
     public float fireHealth;
     public virtual void TakeFireDamage(float dmg)
     {

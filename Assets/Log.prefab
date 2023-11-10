@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4089032012164367880}
   - component: {fileID: 6192215789868109942}
   - component: {fileID: 6061278432824847303}
+  - component: {fileID: -6089813001669249315}
   m_Layer: 3
   m_Name: Log
   m_TagString: Untagged
@@ -179,3 +180,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseBuoyancyForce: 12.72
+--- !u!114 &-6089813001669249315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 912230465764323428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09d817265b78fe442a5024aff9132126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 20

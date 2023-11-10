@@ -20,6 +20,7 @@ TagManager:
   - Rock
   - Boulder
   - AirLift
+  - Charcoal
   layers:
   - Default
   - TransparentFX

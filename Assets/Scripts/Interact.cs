@@ -282,4 +282,26 @@ public class Interact : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.collider.CompareTag("ClimbableVines"))
+        {
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().velocity = Vector3.zero;
+            GetComponent<FirstPersonMovement>().enabled = false;
+            GetComponent<Climb>().enabled = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.collider.CompareTag("ClimbableVines"))
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+            GetComponent<FirstPersonMovement>().enabled = true;
+            GetComponent<Climb>().enabled = false;
+        }
+
+    }
+
 }

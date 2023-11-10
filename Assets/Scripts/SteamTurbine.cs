@@ -17,10 +17,14 @@ public class SteamTurbine : MonoBehaviour
 
     public GameObject screen;
     public Material green;
+    Material red;
 
     public bool water;
     public bool fire;
     public bool wood;
+
+    public float onDuration;
+    public float burnTimer;
 
 
     // Start is called before the first frame update
@@ -29,12 +33,37 @@ public class SteamTurbine : MonoBehaviour
         waterSlot = transform.GetChild(2).GetChild(0).GetChild(0);
         fireSlot = transform.GetChild(1).GetChild(0).GetChild(0);
         woodSlot = transform.GetChild(0).GetChild(0).GetChild(0);
+        red = screen.GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(waterSlot.childCount > 0)
+        if (water && wood && fire)
+        {
+            if(woodSlot.transform.childCount > 0)
+            {
+                onDuration = woodSlot.transform.GetChild(0).GetComponent<Fuel>().duration;
+            }
+            
+            burnTimer += Time.deltaTime;
+            if(burnTimer >= onDuration)
+            {
+                if(woodSlot.transform.childCount > 0)
+                {
+                    Destroy(woodSlot.transform.GetChild(0).gameObject);
+                }
+                
+                wood = false;
+                screen.GetComponent<Renderer>().material = red;
+                woodText.SetActive(true);
+                ingredientsText.SetActive(true);
+                
+            }
+        }
+
+
+        if (waterSlot.childCount > 0)
         {
             if (waterSlot.GetChild(0).GetComponent<WaterOrb>())
             {
@@ -77,6 +106,15 @@ public class SteamTurbine : MonoBehaviour
                 fire = true;
                 wood = true;
             }
+            else if (woodSlot.GetChild(0).GetComponent<Fuel>())
+            {
+                wood = true;
+                woodText.SetActive(false);
+            }
+        }
+        else
+        {
+            wood = false;
         }
 
         if(water && fire && wood)
