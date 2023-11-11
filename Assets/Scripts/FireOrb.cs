@@ -53,7 +53,7 @@ public class FireOrb : ElementalOrb
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Water"))
+        if (other.CompareTag("Water") || other.CompareTag("WaterArea"))
         {
             AudioSource.PlayClipAtPoint(extinguish, transform.position);
             Destroy(gameObject);

@@ -581,6 +581,7 @@ GameObject:
   - component: {fileID: 8893745897606016687}
   - component: {fileID: 5503325733602337391}
   - component: {fileID: 6207340416892103365}
+  - component: {fileID: -2072124414944682277}
   m_Layer: 0
   m_Name: First Person Controller
   m_TagString: Untagged
@@ -736,6 +737,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+--- !u!114 &-2072124414944682277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127969089460791318}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf629c48647dfd41ac6a51168cf9cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  swimDrag: 4
+  swimForce: 10
 --- !u!1 &2781237555596765637
 GameObject:
   m_ObjectHideFlags: 0

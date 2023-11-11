@@ -280,6 +280,21 @@ public class Interact : MonoBehaviour
             GetComponent<FirstPersonMovement>().enabled = true;
             GetComponent<Climb>().enabled = false;
         }
+        else if (other.CompareTag("WaterArea"))
+        {
+            GetComponent<Swim>().enabled = true;
+            GetComponent<Rigidbody>().drag = GetComponent<Swim>().swimDrag;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("WaterArea"))
+        {
+            GetComponent<Swim>().enabled = false;
+            GetComponent<Rigidbody>().drag = 0;
+        }
     }
 
     private void OnCollisionEnter(Collision other)

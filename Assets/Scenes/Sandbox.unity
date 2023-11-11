@@ -731,6 +731,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2072124414944682277, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
+      propertyPath: swimDrag
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -2072124414944682277, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2072124414944682277, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
+      propertyPath: swimForce
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 1555541081488760315, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
       propertyPath: m_Mass
       value: 3
