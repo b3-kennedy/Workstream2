@@ -27,6 +27,10 @@ public class WaterOrb : ElementalOrb
                 Debug.Log("fill");
                 hit.collider.GetComponent<FillArea>().Fill();
             }
+            else if (hit.collider.CompareTag("ControlPanelInside"))
+            {
+                hit.collider.GetComponent<ActivateDoor>().Open();
+            }
         }
 
         AudioSource.PlayClipAtPoint(water, transform.position);

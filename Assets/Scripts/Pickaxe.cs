@@ -53,6 +53,10 @@ public class Pickaxe : Tool
                 pickupdable.dropOnSwitch = true;
 
             }
+            else if (hit.collider.CompareTag("ControlPanel"))
+            {
+                hit.collider.transform.gameObject.SetActive(false);
+            }
 
 
             

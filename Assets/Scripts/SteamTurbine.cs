@@ -26,6 +26,8 @@ public class SteamTurbine : MonoBehaviour
     public float onDuration;
     public float burnTimer;
 
+    public GameObject door;
+
 
     // Start is called before the first frame update
     void Start()
@@ -44,22 +46,24 @@ public class SteamTurbine : MonoBehaviour
             if(woodSlot.transform.childCount > 0)
             {
                 onDuration = woodSlot.transform.GetChild(0).GetComponent<Fuel>().duration;
+
+                burnTimer += Time.deltaTime;
+                if (burnTimer >= onDuration)
+                {
+                    if (woodSlot.transform.childCount > 0)
+                    {
+                        Destroy(woodSlot.transform.GetChild(0).gameObject);
+                    }
+
+                    wood = false;
+                    screen.GetComponent<Renderer>().material = red;
+                    woodText.SetActive(true);
+                    ingredientsText.SetActive(true);
+
+                }
             }
             
-            burnTimer += Time.deltaTime;
-            if(burnTimer >= onDuration)
-            {
-                if(woodSlot.transform.childCount > 0)
-                {
-                    Destroy(woodSlot.transform.GetChild(0).gameObject);
-                }
-                
-                wood = false;
-                screen.GetComponent<Renderer>().material = red;
-                woodText.SetActive(true);
-                ingredientsText.SetActive(true);
-                
-            }
+
         }
 
 
@@ -112,17 +116,12 @@ public class SteamTurbine : MonoBehaviour
                 woodText.SetActive(false);
             }
         }
-        else
-        {
-            wood = false;
-        }
 
         if(water && fire && wood)
         {
-            if (Level.Instance)
+            if(door != null)
             {
-                Level.Instance.puzzleComplete.Invoke();
-                Level.Instance.turbineOn = true;
+                door.GetComponent<Animator>().SetBool("open", true);
             }
 
             titleText.SetActive(false);

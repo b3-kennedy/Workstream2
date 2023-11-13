@@ -136,4 +136,5 @@ MonoBehaviour:
   dissipateTime: 10
   range: 5
   force: 1000
+  buoyantPlatformForce: 400
   soundEffect: {fileID: 8300000, guid: e90f48fe97a5cdf4580def991ac9f472, type: 3}

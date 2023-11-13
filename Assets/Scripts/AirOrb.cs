@@ -8,6 +8,7 @@ public class AirOrb : ElementalOrb
     float timer;
     public float range;
     public float force;
+    public float buoyantPlatformForce;
     public AudioClip soundEffect;
 
     // Start is called before the first frame update
@@ -28,7 +29,16 @@ public class AirOrb : ElementalOrb
 
             if (hit.transform.GetComponent<Rigidbody>())
             {
-                hit.transform.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
+                if (hit.collider.gameObject.GetComponent<BuoyantPlatform>())
+                {
+                    Debug.Log("buoyant");
+                    hit.transform.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * buoyantPlatformForce);
+                }
+                else if(!hit.collider.GetComponent<BuoyantPlatform>())
+                {
+                    hit.transform.GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * force, ForceMode.Impulse);
+                }
+                
             }
         }
 

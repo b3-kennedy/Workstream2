@@ -21,6 +21,10 @@ TagManager:
   - Boulder
   - AirLift
   - Charcoal
+  - ControlPanel
+  - NoEarth
+  - BuoyantPlatform
+  - ControlPanelInside
   layers:
   - Default
   - TransparentFX

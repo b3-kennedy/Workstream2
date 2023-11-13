@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 353245846385805004}
   - component: {fileID: 4156116869248194075}
   - component: {fileID: 6316036142830462448}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WaterTest
   m_TagString: WaterArea
   m_Icon: {fileID: 0}

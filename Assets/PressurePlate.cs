@@ -11,7 +11,7 @@ public class PressurePlate : MonoBehaviour
     private string SlideDown = "SlideDown";
 
     private void Start() {
-        cubeAnimator = GameObject.Find("Cube(5)").GetComponent<Animator>();
+        //cubeAnimator = GameObject.Find("Cube(5)").GetComponent<Animator>();
     }
     private IEnumerator Pause(string name){
         paused = true;

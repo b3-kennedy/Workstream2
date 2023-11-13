@@ -26,7 +26,6 @@ public class EarthOrb : ElementalOrb
         {
             Debug.Log(hit.collider.gameObject);
 
-            Debug.Log(hit.normal);
 
             if(spawnedVine == null)
             {
