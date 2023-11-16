@@ -25,6 +25,8 @@ TagManager:
   - NoEarth
   - BuoyantPlatform
   - ControlPanelInside
+  - AirTowerDoor
+  - Exit
   layers:
   - Default
   - TransparentFX

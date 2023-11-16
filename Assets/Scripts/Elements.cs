@@ -18,6 +18,7 @@ public class Elements : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
         Instance = this;
     }
 

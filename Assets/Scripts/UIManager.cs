@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,9 +17,15 @@ public class UIManager : MonoBehaviour
     public Sprite grabIcon;
     public Sprite dropIcon;
 
+    public GameObject canvas;
+
+    public TextMeshProUGUI enterText;
+
 
     private void Awake()
     {
+        DontDestroyOnLoad(transform.parent.gameObject);
+        DontDestroyOnLoad(canvas);
         Instance = this;
     }
 
@@ -57,4 +64,15 @@ public class UIManager : MonoBehaviour
                 break;
         }
     }
+
+    public void ShowText()
+    {
+        enterText.gameObject.SetActive(true);
+    }
+
+    public void HideText()
+    {
+        enterText.gameObject.SetActive(false);
+    }
+
 }

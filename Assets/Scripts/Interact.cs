@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Interact : MonoBehaviour
@@ -21,6 +22,19 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(UIManager.Instance.enterText != null)
+        {
+            if (UIManager.Instance.enterText.gameObject.activeSelf)
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    UIManager.Instance.HideText();
+                    SceneManager.LoadScene("SampleScene");
+                }
+            }
+        }
+
+
 
         if (GetComponent<Climb>().enabled)
         {
@@ -56,7 +70,12 @@ public class Interact : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     heldItem.SetParent(null);
-                    heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                    if (heldItem.GetComponent<Rigidbody>())
+                    {
+                        heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                        heldItem.GetComponent<Rigidbody>().AddForce(transform.forward * heldItem.GetComponent<Rigidbody>().mass * 100);
+                    }
+                    
                     heldItem.GetComponent<Collider>().enabled = true;
                 }
             }
@@ -189,7 +208,11 @@ public class Interact : MonoBehaviour
         }
         else
         {
-            UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
+            if (UIManager.Instance)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
+            }
+            
         }
     }
 
@@ -286,6 +309,14 @@ public class Interact : MonoBehaviour
             GetComponent<Rigidbody>().drag = GetComponent<Swim>().swimDrag;
 
         }
+        else if (other.CompareTag("AirTowerDoor"))
+        {
+            UIManager.Instance.ShowText();
+        }
+        else if (other.CompareTag("Exit"))
+        {
+            SceneManager.LoadScene("Island", LoadSceneMode.Additive);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -294,6 +325,10 @@ public class Interact : MonoBehaviour
         {
             GetComponent<Swim>().enabled = false;
             GetComponent<Rigidbody>().drag = 0;
+        }
+        else if (other.CompareTag("AirTowerDoor"))
+        {
+            UIManager.Instance.HideText();
         }
     }
 

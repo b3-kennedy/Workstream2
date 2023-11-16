@@ -45,6 +45,7 @@ public class Pickaxe : Tool
                 }
 
                 GameObject rock = Instantiate(hit.collider.gameObject, hit.point, Quaternion.identity);
+                rock.GetComponent<Rigidbody>().isKinematic = false;
                 rock.transform.localScale *= 0.1f;
                 rock.GetComponent<Rigidbody>().mass *= 0.1f;
                 rock.layer = 3;
