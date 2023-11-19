@@ -9,6 +9,9 @@ public class PressurePlate : MonoBehaviour
     private bool paused = false;
     private string SlideUp = "SlideUp";
     private string SlideDown = "SlideDown";
+    public GameObject door;
+
+
 
     private void Start() {
         //cubeAnimator = GameObject.Find("Cube(5)").GetComponent<Animator>();
@@ -26,8 +29,17 @@ public class PressurePlate : MonoBehaviour
         {
             // Debug.Log("Pressed");
             activated = true;
-            cubeAnimator.SetTrigger(SlideUp);
-            StartCoroutine(Pause(SlideUp));
+            if(cubeAnimator != null)
+            {
+                cubeAnimator.SetTrigger(SlideUp);
+                StartCoroutine(Pause(SlideUp));
+                
+            }
+            else
+            {
+                door.SetActive(false);
+            }
+
         }
     }
 
@@ -36,9 +48,18 @@ public class PressurePlate : MonoBehaviour
         if (other.collider && activated && !paused)
         {
             activated = false;
-            // Debug.Log("Unpressed");
-            cubeAnimator.SetTrigger(SlideDown);
-            StartCoroutine(Pause(SlideDown));
+            if(cubeAnimator != null)
+            {
+                // Debug.Log("Unpressed");
+                cubeAnimator.SetTrigger(SlideDown);
+                StartCoroutine(Pause(SlideDown));
+                
+            }
+            else
+            {
+                door.SetActive(true);
+            }
+
         }
     }
 }

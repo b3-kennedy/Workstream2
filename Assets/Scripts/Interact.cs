@@ -169,19 +169,13 @@ public class Interact : MonoBehaviour
                 UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    if (Level.Instance.turbineOn)
-                    {
-                        hit.transform.parent.GetComponent<Animator>().SetBool("open", true);
-                    }
-                    else
-                    {
-                        Debug.Log("locked");
-                    }
+                    hit.transform.parent.gameObject.SetActive(false);
                 }
 
             }
             else if (holdPoint.childCount > 0)
             {
+                Debug.Log(hit.transform);
                 if (hit.transform.GetComponent<ItemHolder>())
                 {
                     UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
@@ -219,6 +213,11 @@ public class Interact : MonoBehaviour
 
     void Grab(Transform hitObj)
     {
+
+        if (hitObj.GetComponent<Buoyancy>())
+        {
+            hitObj.GetComponent<Buoyancy>().inWater = false;
+        }
 
         if(holdPoint.transform.childCount > 0)
         {
@@ -316,6 +315,10 @@ public class Interact : MonoBehaviour
         else if (other.CompareTag("Exit"))
         {
             SceneManager.LoadScene("Island", LoadSceneMode.Additive);
+        }
+        else if (other.GetComponent<PortalDoor>())
+        {
+            transform.position = other.GetComponent<PortalDoor>().destination.position;
         }
     }
 

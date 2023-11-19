@@ -9,6 +9,14 @@ public class ActivateDoor : MonoBehaviour
 
     public void Open()
     {
-        door.GetComponent<Animator>().SetTrigger("SlideUp");
+        if (door.GetComponent<Animator>())
+        {
+            door.GetComponent<Animator>().SetTrigger("SlideUp");
+        }
+        else
+        {
+            door.SetActive(false);
+        }
+        
     }
 }

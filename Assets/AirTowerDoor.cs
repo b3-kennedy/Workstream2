@@ -11,7 +11,8 @@ public class AirTowerDoor : MonoBehaviour
     public float maxWeight;
     public WeightTrigger trigger;
     public float speed;
-    public GameObject sceneTrigger;
+    public GameObject depositTrigger;
+    public LineRenderer towerLR;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class AirTowerDoor : MonoBehaviour
 
         if(door.localPosition.y > 2)
         {
-            sceneTrigger.SetActive(true);
+            depositTrigger.SetActive(true);
         }
         
     }

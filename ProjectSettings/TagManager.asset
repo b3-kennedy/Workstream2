@@ -27,6 +27,11 @@ TagManager:
   - ControlPanelInside
   - AirTowerDoor
   - Exit
+  - Portal
+  - AirDeposit
+  - AirOrb
+  - EarthDeposit
+  - EarthOrb
   layers:
   - Default
   - TransparentFX

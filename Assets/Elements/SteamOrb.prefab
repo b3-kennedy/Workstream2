@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5326272470748545787}
   - component: {fileID: 5219010222545236347}
   - component: {fileID: 4990785336030800283}
-  - component: {fileID: -4763367060832703281}
   - component: {fileID: 4863556023864299338}
+  - component: {fileID: 2658635778867411637}
   m_Layer: 3
   m_Name: SteamOrb
   m_TagString: Element
@@ -122,18 +122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyOnPickup: 0
   dropOnSwitch: 0
---- !u!114 &-4763367060832703281
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4377080896054305517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e47fdf2b1d4d3874d953fffe52b5f3a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4863556023864299338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,3 +135,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 1000
+--- !u!114 &2658635778867411637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4377080896054305517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e47fdf2b1d4d3874d953fffe52b5f3a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

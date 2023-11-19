@@ -7,7 +7,7 @@ public class Buoyancy : MonoBehaviour
 
     public float baseBuoyancyForce = 12.72f;
     protected float buoyancyForce;
-    protected bool inWater;
+    public bool inWater;
     protected bool playerOnPlatform;
     Rigidbody rb;
 

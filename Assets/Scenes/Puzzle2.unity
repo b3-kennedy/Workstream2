@@ -129,7 +129,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 1199957720}
     m_Modifications:
     - target: {fileID: 1738926143909887285, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_Name
@@ -137,7 +137,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.31
+      value: 5.4300003
       objectReference: {fileID: 0}
     - target: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -153,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
       propertyPath: m_LocalRotation.z
@@ -192,6 +192,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
+--- !u!4 &402328761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
+  m_PrefabInstance: {fileID: 402328760}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &482514066
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +418,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6452068321292410347, guid: 18f6ec1c3991f244a8d6335496b20a06, type: 3}
       insertIndex: 55
       addedObject: {fileID: 482514067}
+    - targetCorrespondingSourceObject: {fileID: 6452068321292410347, guid: 18f6ec1c3991f244a8d6335496b20a06, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 402328761}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4219630451187302451, guid: 18f6ec1c3991f244a8d6335496b20a06, type: 3}
       insertIndex: -1
@@ -568,5 +576,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1939424064}
   - {fileID: 1199957719}
-  - {fileID: 402328760}
   - {fileID: 1003254626}

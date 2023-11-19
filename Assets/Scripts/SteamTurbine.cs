@@ -27,6 +27,8 @@ public class SteamTurbine : MonoBehaviour
     public float burnTimer;
 
     public GameObject door;
+    public GameObject[] activatableObjectsOnComplete;
+    public GameObject[] deactivatableObjectsOnComplete;
 
 
     // Start is called before the first frame update
@@ -122,6 +124,16 @@ public class SteamTurbine : MonoBehaviour
             if(door != null)
             {
                 door.GetComponent<Animator>().SetBool("open", true);
+            }
+
+            foreach (var obj in activatableObjectsOnComplete)
+            {
+                obj.SetActive(true);
+            }
+
+            foreach (var obj in deactivatableObjectsOnComplete)
+            {
+                obj.SetActive(false);
             }
 
             titleText.SetActive(false);
