@@ -6888,7 +6888,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -2072124414944682277, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
       propertyPath: swimForce
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2088653500473512319, guid: 2756fe2bf66a4aa4786ac4881d028b41, type: 3}
       propertyPath: m_LocalPosition.x
