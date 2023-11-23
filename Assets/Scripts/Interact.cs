@@ -320,6 +320,35 @@ public class Interact : MonoBehaviour
         {
             transform.position = other.GetComponent<PortalDoor>().destination.position;
         }
+        else if (other.CompareTag("CaveEntrance"))
+        {
+            transform.position = GameManager.Instance.caveEntrancePont.position;
+            //light off
+            GameManager.Instance.directionalLight.SetActive(false);
+            RenderSettings.ambientLight = Color.black;
+            RenderSettings.skybox = GameManager.Instance.blackSkybox;
+            DynamicGI.UpdateEnvironment();
+        }
+        else if (other.CompareTag("CaveExit"))
+        {
+            transform.position = GameManager.Instance.caveExitPoint.position;
+            
+
+
+        }
+        else if (other.CompareTag("TerrainEntrance"))
+        {
+            transform.position = GameManager.Instance.caveTerrainEntrance.position;
+        }
+        else if (other.CompareTag("TerrainExit"))
+        {
+            transform.position = GameManager.Instance.caveTerrainExit.position;
+            //light on
+            GameManager.Instance.directionalLight.SetActive(true);
+            RenderSettings.ambientLight = GameManager.Instance.defaultAmbience;
+            RenderSettings.skybox = GameManager.Instance.defaultSkybox;
+            DynamicGI.UpdateEnvironment();
+        }
     }
 
     private void OnTriggerExit(Collider other)

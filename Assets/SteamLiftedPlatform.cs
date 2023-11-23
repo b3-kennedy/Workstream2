@@ -36,7 +36,7 @@ public class SteamLiftedPlatform : MonoBehaviour
             }
         }
 
-        if(transform.position.y < maxHeight)
+        if(transform.localPosition.y < maxHeight)
         {
             if (colliding)
             {
@@ -44,16 +44,21 @@ public class SteamLiftedPlatform : MonoBehaviour
             }
         }
 
-        if(transform.position.y >= maxHeight)
+        if(transform.localPosition.y >= maxHeight)
         {
             waitTimer += Time.deltaTime;
             if(waitTimer >= waitTime)
             {
                 moveDown = true;
+                colliding = false;
+                if(transform.childCount > 1)
+                {
+                    Destroy(transform.GetChild(1).gameObject);
+                }
             }
         }
 
-        if(transform.position.y > minHeight)
+        if(transform.localPosition.y > minHeight)
         {
             if (moveDown)
             {
@@ -61,7 +66,7 @@ public class SteamLiftedPlatform : MonoBehaviour
             }
         }
 
-        if(transform.position.y <= minHeight)
+        if(transform.localPosition.y <= minHeight)
         {
             moveDown = false;
         }
@@ -75,6 +80,8 @@ public class SteamLiftedPlatform : MonoBehaviour
     {
         if (other.collider.GetComponent<Steam>())
         {
+            other.transform.SetParent(transform.parent);
+            other.transform.GetComponent<Rigidbody>().velocity = GetComponent<Rigidbody>().velocity;
             Debug.Log("colliding with steam");
             colliding = true;
 

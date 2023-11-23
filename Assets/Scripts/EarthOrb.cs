@@ -24,7 +24,7 @@ public class EarthOrb : ElementalOrb
     {
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
         {
-            Debug.Log(hit.collider.gameObject);
+            Debug.Log(hit.normal);
 
 
             if(spawnedVine == null)
@@ -34,7 +34,7 @@ public class EarthOrb : ElementalOrb
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 }
-                else if (hit.normal.x == -1)
+                if (hit.normal.x == -1)
                 {
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
@@ -45,13 +45,13 @@ public class EarthOrb : ElementalOrb
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
                 }
-                else if (hit.normal.z == -1)
+                if (hit.normal.z == -1)
                 {
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
                 }
 
-                if (hit.normal.y == 1)
+                if (hit.normal.y > .4f)
                 {
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.eulerAngles = new Vector3(0, Camera.main.transform.parent.eulerAngles.y + 90, 90);

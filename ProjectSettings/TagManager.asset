@@ -32,6 +32,12 @@ TagManager:
   - AirOrb
   - EarthDeposit
   - EarthOrb
+  - FireOrb
+  - FireDeposit
+  - CaveEntrance
+  - CaveExit
+  - TerrainEntrance
+  - TerrainExit
   layers:
   - Default
   - TransparentFX

@@ -40,12 +40,21 @@ public class FireOrb : ElementalOrb
             {
                 hit.collider.gameObject.SetActive(false);
             }
-            else if (hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.WATER)
+            else if (hit.transform.GetComponent<Torch>())
             {
-                GameObject steam = Instantiate(Elements.Instance.steamElement, hit.point, Quaternion.identity);
-                AudioSource.PlayClipAtPoint(extinguish, hit.point);
-
+                hit.transform.GetComponent<Torch>().TurnOn();
             }
+
+            if (hit.transform.GetComponent<EnvironmentElement>())
+            {
+                if (hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.WATER)
+                {
+                    GameObject steam = Instantiate(Elements.Instance.steamElement, hit.point, Quaternion.identity);
+                    AudioSource.PlayClipAtPoint(extinguish, hit.point);
+
+                }
+            }
+
         }
         AudioSource.PlayClipAtPoint(flamethrower, transform.position);
     }

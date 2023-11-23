@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class TreePlacer : MonoBehaviour
 {
+
+    public static TreePlacer Instance;
+
     public GameObject[] treePrefabs;
     public  Terrain[] terrains;
     List<Vector3> treePositions = new List<Vector3>();
@@ -14,6 +17,8 @@ public class TreePlacer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Instance = this;
+
         foreach (var terrain in terrains)
         {
             foreach(var tree in terrain.terrainData.treeInstances) 
