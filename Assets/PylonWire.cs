@@ -21,4 +21,17 @@ public class PylonWire : MonoBehaviour
         lr2.SetPosition(1, wire2Destination.position);
     }
 
+    private void Update()
+    {
+        if(wire1Destination == null)
+        {
+            lr1.SetPosition(1, lr1.transform.position);
+        }
+
+        if(wire2Destination == null)
+        {
+            lr2.SetPosition(1, lr2.transform.position);
+        }
+    }
+
 }

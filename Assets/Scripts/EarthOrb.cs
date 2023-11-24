@@ -31,28 +31,34 @@ public class EarthOrb : ElementalOrb
             {
                 if (hit.normal.x == 1)
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 }
                 if (hit.normal.x == -1)
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
                 }
 
                 if (hit.normal.z == 1)
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, -90, 0));
                 }
                 if (hit.normal.z == -1)
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
                 }
 
                 if (hit.normal.y > .4f)
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
                     spawnedVine = Instantiate(vines, hit.point, Quaternion.identity);
                     spawnedVine.eulerAngles = new Vector3(0, Camera.main.transform.parent.eulerAngles.y + 90, 90);
                     spawnedVine.GetChild(0).tag = "ClimbableVines";
@@ -71,6 +77,8 @@ public class EarthOrb : ElementalOrb
 
     private void Update()
     {
+
+
         if(spawnedVine != null)
         {
             if (Input.GetButton("Fire1"))
@@ -87,6 +95,53 @@ public class EarthOrb : ElementalOrb
 
                 
             }
+        }
+
+
+
+
+
+    }
+
+    public override void UI()
+    {
+        Debug.Log("UI");
+
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+
+            Debug.Log("in raycast");
+
+            if (hit.normal.x == 1)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            if (hit.normal.x == -1)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+
+            if (hit.normal.z == 1)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            if (hit.normal.z == -1)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+            }
+
+            if (hit.normal.y > .4f)
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+            }
+
+        }
+
+        if(spawnedVine != null)
+        {
+            UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
         }
     }
 }

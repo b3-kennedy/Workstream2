@@ -46,41 +46,6 @@ public class Interact : MonoBehaviour
             }
         }
 
-        if(holdPoint.childCount > 0)
-        {
-            var heldItem = holdPoint.GetChild(0);
-            if (heldItem.GetComponent<ElementalOrb>())
-            {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    heldItem.GetComponent<ElementalOrb>().Use();
-                }
-
-            }
-            else if (heldItem.GetComponent<Tool>())
-            {
-                if (Input.GetButtonDown("Fire1"))
-                {
-                    heldItem.GetComponent<Tool>().Use();
-                }
-            }
-
-            if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
-            {
-                if (Input.GetKeyDown(KeyCode.Q))
-                {
-                    heldItem.SetParent(null);
-                    if (heldItem.GetComponent<Rigidbody>())
-                    {
-                        heldItem.GetComponent<Rigidbody>().isKinematic = false;
-                        heldItem.GetComponent<Rigidbody>().AddForce(transform.forward * heldItem.GetComponent<Rigidbody>().mass * 100);
-                    }
-                    
-                    heldItem.GetComponent<Collider>().enabled = true;
-                }
-            }
-        }
-
         if (Physics.Raycast(rayStart.position, Camera.main.transform.forward, out RaycastHit hit, range, interactableLayer))
         {
 
@@ -169,34 +134,20 @@ public class Interact : MonoBehaviour
                 UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
-                    hit.transform.parent.gameObject.SetActive(false);
+                    if (hit.transform.GetComponent<DoorButton>())
+                    {
+                        hit.transform.GetComponent<DoorButton>().Activated();
+                    }
                 }
 
             }
             else if (holdPoint.childCount > 0)
             {
+                var heldItem = holdPoint.GetChild(0);
                 Debug.Log(hit.transform);
-                if (hit.transform.GetComponent<ItemHolder>())
-                {
-                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
-                    var heldItem = holdPoint.GetChild(0);
+                Holders(hit, heldItem);
 
-                    if (heldItem.CompareTag("Element"))
-                    {
-                        if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
-                        {
-                            Drop(hit.transform);
-                            heldItem.GetComponent<ElementalOrb>().enabled = false;
-                        }
-                    }
-                    if (heldItem.CompareTag("Untagged"))
-                    {
-                        if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.DEFAULT))
-                        {
-                            Drop(hit.transform);
-                        }
-                    }
-                }
+
 
             }
         }
@@ -207,6 +158,73 @@ public class Interact : MonoBehaviour
                 UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
             }
             
+        }
+
+
+        if (holdPoint.childCount > 0)
+        {
+            var heldItem = holdPoint.GetChild(0);
+            if (heldItem.GetComponent<ElementalOrb>())
+            {
+
+                heldItem.GetComponent<ElementalOrb>().UI();
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    heldItem.GetComponent<ElementalOrb>().Use();
+                }
+
+            }
+            else if (heldItem.GetComponent<Tool>())
+            {
+                if (Input.GetButtonDown("Fire1"))
+                {
+                    heldItem.GetComponent<Tool>().Use();
+                }
+            }
+
+            if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    heldItem.SetParent(null);
+                    if (heldItem.GetComponent<Rigidbody>())
+                    {
+                        heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                        heldItem.GetComponent<Rigidbody>().AddForce(transform.forward * heldItem.GetComponent<Rigidbody>().mass * 100);
+                    }
+
+                    heldItem.GetComponent<Collider>().enabled = true;
+                }
+            }
+
+        }
+
+
+    }
+
+    void Holders(RaycastHit hit, Transform heldItem)
+    {
+        if (hit.transform.GetComponent<ItemHolder>())
+        {
+            UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            
+
+            if (heldItem.CompareTag("Element"))
+            {
+                if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
+                {
+                    Drop(hit.transform);
+                    heldItem.GetComponent<ElementalOrb>().enabled = false;
+                }
+            }
+            if (heldItem.CompareTag("Untagged"))
+            {
+                if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.DEFAULT))
+                {
+                    Drop(hit.transform);
+                }
+            }
         }
     }
 
@@ -332,13 +350,23 @@ public class Interact : MonoBehaviour
         else if (other.CompareTag("CaveExit"))
         {
             transform.position = GameManager.Instance.caveExitPoint.position;
-            
+            //light off
+            GameManager.Instance.directionalLight.SetActive(false);
+            RenderSettings.ambientLight = Color.black;
+            RenderSettings.skybox = GameManager.Instance.blackSkybox;
+            DynamicGI.UpdateEnvironment();
+
 
 
         }
         else if (other.CompareTag("TerrainEntrance"))
         {
             transform.position = GameManager.Instance.caveTerrainEntrance.position;
+            //light on
+            GameManager.Instance.directionalLight.SetActive(true);
+            RenderSettings.ambientLight = GameManager.Instance.defaultAmbience;
+            RenderSettings.skybox = GameManager.Instance.defaultSkybox;
+            DynamicGI.UpdateEnvironment();
         }
         else if (other.CompareTag("TerrainExit"))
         {

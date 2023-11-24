@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a7b3e4f8e594664c978d8b76b6b1aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 20
   vines: {fileID: 5999829307288369835, guid: cf0d46618bc8bfe4bb5447f02dc4fdb5, type: 3}
   growSpeed: 5
   maxGrowTime: 1

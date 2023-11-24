@@ -30,6 +30,8 @@ public class SteamTurbine : MonoBehaviour
     public GameObject[] activatableObjectsOnComplete;
     public GameObject[] deactivatableObjectsOnComplete;
 
+    bool activated;
+
 
     // Start is called before the first frame update
     void Start()
@@ -121,27 +123,32 @@ public class SteamTurbine : MonoBehaviour
 
         if(water && fire && wood)
         {
-            if(door != null)
+            if (!activated)
             {
-                door.GetComponent<Animator>().SetBool("open", true);
+                if (door != null)
+                {
+                    door.GetComponent<Animator>().SetBool("open", true);
+                }
+
+                foreach (var obj in activatableObjectsOnComplete)
+                {
+                    obj.SetActive(true);
+                }
+
+                foreach (var obj in deactivatableObjectsOnComplete)
+                {
+                    obj.SetActive(false);
+                }
+
+                titleText.SetActive(false);
+                ingredientsText.SetActive(false);
+                screen.GetComponent<Renderer>().material = green;
+                fireText.SetActive(false);
+                waterText.SetActive(false);
+                woodText.SetActive(false);
+                activated = true;
             }
 
-            foreach (var obj in activatableObjectsOnComplete)
-            {
-                obj.SetActive(true);
-            }
-
-            foreach (var obj in deactivatableObjectsOnComplete)
-            {
-                obj.SetActive(false);
-            }
-
-            titleText.SetActive(false);
-            ingredientsText.SetActive(false);
-            screen.GetComponent<Renderer>().material = green;
-            fireText.SetActive(false);
-            waterText.SetActive(false);
-            woodText.SetActive(false);
 
         }
     }

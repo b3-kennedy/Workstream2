@@ -32,6 +32,16 @@ public class PylonStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(lr1End == null)
+        {
+            lr1.SetPosition(1, transform.position);
+            lr2.SetPosition(1, transform.position);
+        }
+
+        if(lr3End == null)
+        {
+            lr3.SetPosition(1, transform.position);
+            lr4.SetPosition(1, transform.position);
+        }
     }
 }
