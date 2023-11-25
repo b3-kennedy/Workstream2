@@ -63,4 +63,24 @@ public class Pickaxe : Tool
             
         }
     }
+
+    public override void UI()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+            Debug.Log(hit.collider.gameObject);
+            if (hit.collider.CompareTag("Rock"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+            }
+            else if (hit.collider.CompareTag("ControlPanel"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+
+
+
+        }
+    }
 }

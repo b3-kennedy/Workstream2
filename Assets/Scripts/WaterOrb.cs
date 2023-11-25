@@ -36,5 +36,28 @@ public class WaterOrb : ElementalOrb
         AudioSource.PlayClipAtPoint(water, transform.position);
     }
 
+    public override void UI()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+            if (hit.collider.CompareTag("Element"))
+            {
+                if (hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.FIRE)
+                {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+                }
+            }
+            else if (hit.collider.CompareTag("WaterFillZone"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            else if (hit.collider.CompareTag("ControlPanelInside"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+        }
+    }
+
 
 }

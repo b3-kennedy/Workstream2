@@ -77,7 +77,11 @@ public class EarthOrb : ElementalOrb
 
     private void Update()
     {
-
+        if (Input.GetButtonDown("Fire2"))
+        {
+            spawnedVine = null;
+            growth = 0;
+        }
 
         if(spawnedVine != null)
         {
@@ -85,6 +89,11 @@ public class EarthOrb : ElementalOrb
             {
                 growth += Time.deltaTime * growSpeed;
                 timer += Time.deltaTime;
+
+
+                transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime)/5f;
+
+                
 
                 spawnedVine.transform.localScale = new Vector3(growth, spawnedVine.transform.localScale.y, spawnedVine.transform.localScale.z);
 
@@ -137,11 +146,16 @@ public class EarthOrb : ElementalOrb
 
             }
 
+            if (hit.collider.GetComponent<EnvironmentElement>() || hit.collider.GetComponent<ElementalOrb>())
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
+            }
+
         }
 
-        if(spawnedVine != null)
-        {
-            UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
-        }
+        //if(spawnedVine != null)
+        //{
+        //    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
+        //}
     }
 }

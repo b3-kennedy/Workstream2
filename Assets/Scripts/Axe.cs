@@ -38,5 +38,23 @@ public class Axe : Tool
         }
     }
 
+    public override void UI()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+            Debug.Log(hit.collider.gameObject);
+
+            if (hit.collider.GetComponent<Cuttable>())
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            else if (hit.collider.GetComponent<Tree>())
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+            }
+        }
+    }
+
 
 }

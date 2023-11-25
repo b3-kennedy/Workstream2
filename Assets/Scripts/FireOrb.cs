@@ -68,4 +68,36 @@ public class FireOrb : ElementalOrb
             Destroy(gameObject);
         }
     }
+
+    public override void UI()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+            Debug.Log(hit.collider.gameObject);
+
+            if (hit.collider.GetComponent<Burnable>())
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            else if (hit.collider.CompareTag("ClimbableVines"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+            else if (hit.transform.GetComponent<Torch>())
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+
+            if (hit.transform.GetComponent<EnvironmentElement>())
+            {
+                if (hit.transform.GetComponent<EnvironmentElement>().type == EnvironmentElement.ElementType.WATER)
+                {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+
+                }
+                
+            }
+
+        }
+    }
 }

@@ -38,6 +38,9 @@ TagManager:
   - CaveExit
   - TerrainEntrance
   - TerrainExit
+  - LaserTarget
+  - WaterOrb
+  - WaterDeposit
   layers:
   - Default
   - TransparentFX

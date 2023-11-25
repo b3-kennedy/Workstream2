@@ -22,17 +22,17 @@ public class Interact : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(UIManager.Instance.enterText != null)
-        {
-            if (UIManager.Instance.enterText.gameObject.activeSelf)
-            {
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    UIManager.Instance.HideText();
-                    SceneManager.LoadScene("SampleScene");
-                }
-            }
-        }
+        //if(UIManager.Instance.enterText != null)
+        //{
+        //    if (UIManager.Instance.enterText.gameObject.activeSelf)
+        //    {
+        //        if (Input.GetKeyDown(KeyCode.E))
+        //        {
+        //            UIManager.Instance.HideText();
+        //            SceneManager.LoadScene("SampleScene");
+        //        }
+        //    }
+        //}
 
 
 
@@ -161,6 +161,13 @@ public class Interact : MonoBehaviour
         }
 
 
+        HeldItems();
+
+
+    }
+
+    void HeldItems()
+    {
         if (holdPoint.childCount > 0)
         {
             var heldItem = holdPoint.GetChild(0);
@@ -177,6 +184,7 @@ public class Interact : MonoBehaviour
             }
             else if (heldItem.GetComponent<Tool>())
             {
+                heldItem.GetComponent<Tool>().UI();
                 if (Input.GetButtonDown("Fire1"))
                 {
                     heldItem.GetComponent<Tool>().Use();
@@ -199,8 +207,6 @@ public class Interact : MonoBehaviour
             }
 
         }
-
-
     }
 
     void Holders(RaycastHit hit, Transform heldItem)
@@ -221,6 +227,13 @@ public class Interact : MonoBehaviour
             if (heldItem.CompareTag("Untagged"))
             {
                 if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.DEFAULT))
+                {
+                    Drop(hit.transform);
+                }
+            }
+            if (heldItem.CompareTag("Charcoal"))
+            {
+                if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.CHARCOAL))
                 {
                     Drop(hit.transform);
                 }

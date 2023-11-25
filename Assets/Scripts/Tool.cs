@@ -9,4 +9,6 @@ public class Tool : MonoBehaviour
     public virtual void OnPickUp() { }
 
     public virtual void Use() { }
+
+    public virtual void UI() { }
 }

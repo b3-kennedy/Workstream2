@@ -60,4 +60,23 @@ public class AirOrb : ElementalOrb
     {
         timer = dissipateTime;
     }
+
+    public override void UI()
+    {
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
+        {
+            Debug.Log(hit.collider.gameObject);
+
+            if (hit.collider.CompareTag("Rotor"))
+            {
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+
+            if (hit.transform.GetComponent<Rigidbody>())
+            {
+
+                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
+            }
+        }
+    }
 }
