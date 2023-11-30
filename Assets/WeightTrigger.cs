@@ -21,7 +21,6 @@ public class WeightTrigger : MonoBehaviour
     private void Start()
     {
         col = GetComponent<Collider>();
-        Debug.Log(col.bounds);
 
         minX = col.bounds.min.x;
         minY = col.bounds.min.y;
@@ -30,12 +29,6 @@ public class WeightTrigger : MonoBehaviour
         maxX = col.bounds.max.x;
         maxY = col.bounds.max.y;
         maxZ = col.bounds.max.z;
-
-        Debug.Log(minX);
-        Debug.Log(maxX);
-
-        Debug.Log(minZ);
-        Debug.Log(maxZ);
     }
 
 

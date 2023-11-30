@@ -12,6 +12,7 @@ public class PortalDoor : MonoBehaviour
         if (other.GetComponent<Rigidbody>())
         {
             other.transform.position = destination.position;
+            //other.transform.rotation = transform.parent.rotation;
         }
     }
 }

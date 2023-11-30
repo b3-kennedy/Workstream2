@@ -12,6 +12,14 @@ public class Interact : MonoBehaviour
     public float range;
     public LayerMask interactableLayer;
     public Transform holdPoint;
+    float tempDist = 9999;
+
+    public GameObject pauseMenu;
+
+    bool puzzle1;
+    bool puzzle2;
+    bool puzzle3;
+    bool puzzle4;
 
     // Start is called before the first frame update
     void Start()
@@ -19,20 +27,22 @@ public class Interact : MonoBehaviour
         GetComponent<Climb>().enabled = false;
     }
 
+    void PauseMenu()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            UIManager.Instance.PauseMenu();
+        }
+    }
+
+
     // Update is called once per frame
     void Update()
     {
-        //if(UIManager.Instance.enterText != null)
-        //{
-        //    if (UIManager.Instance.enterText.gameObject.activeSelf)
-        //    {
-        //        if (Input.GetKeyDown(KeyCode.E))
-        //        {
-        //            UIManager.Instance.HideText();
-        //            SceneManager.LoadScene("SampleScene");
-        //        }
-        //    }
-        //}
+
+        PauseMenu();
+
+
 
 
 
@@ -162,8 +172,32 @@ public class Interact : MonoBehaviour
 
 
         HeldItems();
+        PuzzleResets();
 
 
+    }
+
+    void PuzzleResets()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (puzzle1)
+            {
+                GameManager.Instance.ResetPuzzle1();
+            }
+            else if (puzzle2)
+            {
+                GameManager.Instance.ResetPuzzle2();
+            }
+            else if (puzzle3)
+            {
+                GameManager.Instance.ResetPuzzle3();
+            }
+            else if (puzzle4)
+            {
+                GameManager.Instance.ResetPuzzle4();
+            }
+        }
     }
 
     void HeldItems()
@@ -390,7 +424,26 @@ public class Interact : MonoBehaviour
             RenderSettings.skybox = GameManager.Instance.defaultSkybox;
             DynamicGI.UpdateEnvironment();
         }
+        else if (other.CompareTag("Puzzle1"))
+        {
+            puzzle1 = true;
+        }
+        else if (other.CompareTag("Puzzle2"))
+        {
+            puzzle2 = true;
+        }
+        else if (other.CompareTag("Puzzle3"))
+        {
+            puzzle3 = true;
+        }
+        else if (other.CompareTag("Puzzle4"))
+        {
+            puzzle4 = true;
+        }
+
     }
+
+
 
     private void OnTriggerExit(Collider other)
     {
@@ -402,6 +455,22 @@ public class Interact : MonoBehaviour
         else if (other.CompareTag("AirTowerDoor"))
         {
             UIManager.Instance.HideText();
+        }
+        else if (other.CompareTag("Puzzle1"))
+        {
+            puzzle1 = false;
+        }
+        else if (other.CompareTag("Puzzle2"))
+        {
+            puzzle2 = false;
+        }
+        else if (other.CompareTag("Puzzle3"))
+        {
+            puzzle3 = false;
+        }
+        else if (other.CompareTag("Puzzle4"))
+        {
+            puzzle4 = false;
         }
     }
 

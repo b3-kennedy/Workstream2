@@ -41,6 +41,10 @@ TagManager:
   - LaserTarget
   - WaterOrb
   - WaterDeposit
+  - Puzzle1
+  - Puzzle2
+  - Puzzle3
+  - Puzzle4
   layers:
   - Default
   - TransparentFX

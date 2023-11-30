@@ -21,17 +21,23 @@ public class UIManager : MonoBehaviour
 
     public TextMeshProUGUI enterText;
 
+    public GameObject pauseMenu;
+
+    Transform player;
+
 
     private void Awake()
     {
-        DontDestroyOnLoad(transform.parent.gameObject);
-        DontDestroyOnLoad(canvas);
+        //DontDestroyOnLoad(transform.parent.gameObject);
+        //DontDestroyOnLoad(canvas);
         Instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameManager.Instance.player;
+        pauseMenu.SetActive(false);
         
     }
 
@@ -39,6 +45,26 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void PauseMenu()
+    {
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        if (pauseMenu.activeSelf)
+        {
+            Time.timeScale = 0;
+            Cursor.lockState = CursorLockMode.None;
+            player.GetComponentInChildren<FirstPersonLook>().canLook = false;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            Cursor.lockState = CursorLockMode.Locked;
+            player.GetComponentInChildren<FirstPersonLook>().canLook = true;
+        }
+        
+        
+        ;
     }
 
     public void ChangeCrosshairState(CrosshairState state)
