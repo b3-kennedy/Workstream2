@@ -505,8 +505,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5338979, y: 1.8289921, z: 1.8843812}
-  m_Center: {x: 0.18343902, y: -0.027312517, z: -0.02766484}
+  m_Size: {x: 0.67199236, y: 2.0941517, z: 1.9653624}
+  m_Center: {x: 0.114391744, y: 0.026189566, z: 0.012825787}
 --- !u!114 &420230041905173108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,3 +591,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 2
   lauchPoint: {fileID: 1955079484914131244}
+  send: 0

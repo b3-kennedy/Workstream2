@@ -9,6 +9,7 @@ public class Windmill : MonoBehaviour
     public bool canRotate;
     public float rotateSpeed;
     public float stopTime;
+    public bool noStop;
 
 
     // Start is called before the first frame update
@@ -23,7 +24,11 @@ public class Windmill : MonoBehaviour
         if (canRotate)
         {
             rotor.Rotate(new Vector3(rotateSpeed * Time.deltaTime, 0, 0));
-            StartCoroutine(Stop());
+            if (!noStop)
+            {
+                StartCoroutine(Stop());
+            }
+            
         }
     }
 

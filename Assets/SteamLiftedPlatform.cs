@@ -51,10 +51,11 @@ public class SteamLiftedPlatform : MonoBehaviour
             {
                 moveDown = true;
                 colliding = false;
-                if(transform.childCount > 1)
-                {
-                    Destroy(transform.GetChild(1).gameObject);
-                }
+                //if(transform.childCount > 1)
+                //{
+                //    Destroy(transform.GetChild(1).gameObject);
+                //}
+                waitTimer = 0;
             }
         }
 
@@ -73,6 +74,22 @@ public class SteamLiftedPlatform : MonoBehaviour
 
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<FirstPersonMovement>())
+        {
+            other.transform.SetParent(transform);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<FirstPersonMovement>())
+        {
+            other.transform.SetParent(null);
+        }
     }
 
 
