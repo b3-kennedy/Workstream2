@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -35,16 +36,37 @@ public class GameManager : MonoBehaviour
     public Transform puzzle2SpawnPoint;
     public Transform puzzle3SpawnPoint;
     public Transform puzzle4SpawnPoint;
+    public Transform puzzle5SpawnPoint;
 
     public GameObject puzzle1Prefab;
     public GameObject puzzle2Prefab;
     public GameObject puzzle3Prefab;
     public GameObject puzzle4Prefab;
+    public GameObject puzzle5Prefab;
 
     [Header("Main Menu")]
     public GameObject mainMenuCam;
     public GameObject mainMenu;
     public GameObject fadePanel;
+
+    public LineRenderer airTower;
+    public LineRenderer earthTower;
+    public LineRenderer fireTower;
+    public LineRenderer waterTower;
+
+    
+
+   
+
+    public GameObject playerCam;
+
+    bool played;
+
+    [Header("Cutscenes")]
+    public GameObject castleDoor;
+    public PlayableDirector director;
+    public PlayableDirector finalCutsceneDirector;
+
 
 
 
@@ -60,10 +82,54 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void FinalCutscene()
+    {
+        
+        Debug.Log("final");
+        finalCutsceneDirector.gameObject.SetActive(true);
+        finalCutsceneDirector.Play();
+        StartCoroutine(WaitForFinalCutscene((float)finalCutsceneDirector.duration));
+    }
+
+    IEnumerator WaitForFinalCutscene(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        MainMenu();
+    }
+
     public void Quit()
     {
         Application.Quit();
     }
+
+
+    private void Update()
+    {
+        if(airTower.enabled && earthTower.enabled && fireTower.enabled && waterTower.enabled && !played)
+        {
+            OpenCastleDoor();
+            played = true;
+        }
+    }
+
+    public void OpenCastleDoor()
+    {
+        director.gameObject.SetActive(true);
+        playerCam.SetActive(false);
+        director.Play();
+        Debug.Log(director.duration);
+        StartCoroutine(WaitForCutscene((float)director.duration));
+        //castleDoor.SetActive(false);
+    }
+
+    IEnumerator WaitForCutscene(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        playerCam.SetActive(true);
+    }
+
+
+
 
     public void ResetPuzzle1()
     {
@@ -99,6 +165,14 @@ public class GameManager : MonoBehaviour
         puzzlePositions[3] = puzzle.transform;
         player.transform.position = puzzle4SpawnPoint.position;
 
+    }
+
+    public void ResetPuzzle5()
+    {
+        Destroy(puzzlePositions[4].gameObject);
+        var puzzle = Instantiate(puzzle5Prefab);
+        puzzlePositions[4] = puzzle.transform;
+        player.transform.position = puzzle5SpawnPoint.position;
     }
 
     public void StartGameTransition()

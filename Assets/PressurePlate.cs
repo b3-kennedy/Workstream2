@@ -12,6 +12,7 @@ public class PressurePlate : MonoBehaviour
     private string SlideDown = "SlideDown";
     public GameObject door;
     public bool opposite;
+    public float minMass;
 
 
 
@@ -31,7 +32,7 @@ public class PressurePlate : MonoBehaviour
         {
             // Debug.Log("Pressed");
 
-            if(other.transform.GetComponent<FirstPersonMovement>() || other.transform.GetComponent<Rigidbody>().mass > 3)
+            if(other.transform.GetComponent<FirstPersonMovement>() || other.transform.GetComponent<Rigidbody>().mass > minMass)
             {
                 activated = true;
                 if (cubeAnimator != null)

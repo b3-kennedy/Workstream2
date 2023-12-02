@@ -3931,6 +3931,7 @@ MonoBehaviour:
   canRotate: 0
   rotateSpeed: 1000
   stopTime: 10
+  noStop: 0
 --- !u!1 &2904523897925512376
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,6 +5587,7 @@ Transform:
   - {fileID: 4578890526384583572}
   - {fileID: 1738378530598713299}
   - {fileID: 4163113921680702603}
+  - {fileID: 338918696427246301}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3523572005832902514
@@ -8111,6 +8113,59 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5453485160996079596
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 338918696427246301}
+  - component: {fileID: 181954620829548312}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Puzzle4
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &338918696427246301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453485160996079596}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -23.4, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6818322269380500228}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &181954620829548312
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5453485160996079596}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 126.97, y: 50, z: 57.96}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5459342486255064217
 GameObject:
   m_ObjectHideFlags: 0
@@ -11769,6 +11824,7 @@ MonoBehaviour:
   canRotate: 0
   rotateSpeed: 1000
   stopTime: 10
+  noStop: 0
 --- !u!1 &7861802732452836812
 GameObject:
   m_ObjectHideFlags: 0

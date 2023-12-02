@@ -32,14 +32,14 @@ public class WeightTrigger : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.GetComponent<Rigidbody>())
         {
-            if (other.GetComponent<FirstPersonMovement>())
-            {
-                weight += 50;
-            }
+            //if (other.GetComponent<FirstPersonMovement>())
+            //{
+            //    weight += 50;
+            //}
 
             if (!objects.Contains(other.gameObject))
             {

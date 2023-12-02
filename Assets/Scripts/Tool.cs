@@ -6,7 +6,10 @@ public class Tool : MonoBehaviour
 {
     public Vector3 rotation;
     public float range;
-    public virtual void OnPickUp() { }
+    public virtual void OnPickUp() 
+    {
+        transform.localRotation = Quaternion.Euler(rotation);
+    }
 
     public virtual void Use() { }
 

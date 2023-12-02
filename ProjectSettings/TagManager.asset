@@ -45,6 +45,9 @@ TagManager:
   - Puzzle2
   - Puzzle3
   - Puzzle4
+  - FinalDeposit
+  - FinalOrb
+  - Puzzle5
   layers:
   - Default
   - TransparentFX

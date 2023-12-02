@@ -2265,6 +2265,59 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &3762630159585184717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8345133303743425478}
+  - component: {fileID: 8410180308343519830}
+  m_Layer: 0
+  m_Name: Trigger
+  m_TagString: Puzzle1
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8345133303743425478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762630159585184717}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.44913536, z: 0, w: 0.89346373}
+  m_LocalPosition: {x: -13.1, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8542472373688762919}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8410180308343519830
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762630159585184717}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 60, y: 30, z: 60}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3767876587241444698
 GameObject:
   m_ObjectHideFlags: 0
@@ -4650,7 +4703,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7983079020096921052}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.44913536, z: -0, w: 0.89346373}
+  m_LocalRotation: {x: 0, y: 0.4491319, z: 0, w: 0.89346546}
   m_LocalPosition: {x: 735.4, y: 31.24, z: 392.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4693,6 +4746,7 @@ Transform:
   - {fileID: 6670687147498049776}
   - {fileID: 5346106915903164366}
   - {fileID: 3077382290432520102}
+  - {fileID: 8345133303743425478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 53.376, z: 0}
 --- !u!1 &8243287792866218596

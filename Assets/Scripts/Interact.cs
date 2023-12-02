@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class Interact : MonoBehaviour
     bool puzzle2;
     bool puzzle3;
     bool puzzle4;
+    bool puzzle5;
 
     // Start is called before the first frame update
     void Start()
@@ -56,119 +58,123 @@ public class Interact : MonoBehaviour
             }
         }
 
-        if (Physics.Raycast(rayStart.position, Camera.main.transform.forward, out RaycastHit hit, range, interactableLayer))
+        if (GameManager.Instance.playerCam.activeSelf)
         {
-
-            
-
-            if (hit.transform.GetComponent<Pickupable>())
-            {
-                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
-
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    Grab(hit.transform);
-                }
-            }
-            else if (hit.transform.GetComponent<EnvironmentElement>())
+            if (Physics.Raycast(rayStart.position, Camera.main.transform.forward, out RaycastHit hit, range, interactableLayer))
             {
 
-                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
 
-                var elem = hit.transform.GetComponent<EnvironmentElement>().type;
 
-                if (Input.GetKeyDown(KeyCode.E))
+                if (hit.transform.GetComponent<Pickupable>())
                 {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
 
-                    if (holdPoint.childCount > 0)
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        var heldItem = holdPoint.GetChild(0);
+                        Grab(hit.transform);
+                    }
+                }
+                else if (hit.transform.GetComponent<EnvironmentElement>())
+                {
 
-                        if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
+
+                    var elem = hit.transform.GetComponent<EnvironmentElement>().type;
+
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+
+                        if (holdPoint.childCount > 0)
                         {
+                            var heldItem = holdPoint.GetChild(0);
 
-                            heldItem.SetParent(null);
-                            heldItem.GetComponent<Rigidbody>().isKinematic = false;
-                            heldItem.GetComponent<Collider>().enabled = true;
-                            
+                            if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
+                            {
+
+                                heldItem.SetParent(null);
+                                heldItem.GetComponent<Rigidbody>().isKinematic = false;
+                                heldItem.GetComponent<Collider>().enabled = true;
+
+                            }
+                            else
+                            {
+                                Destroy(heldItem.gameObject);
+                            }
                         }
-                        else
+
+
+
+                        switch (elem)
                         {
-                            Destroy(heldItem.gameObject);
+                            case EnvironmentElement.ElementType.FIRE:
+
+                                GameObject fire = Instantiate(Elements.Instance.fireOrb, holdPoint);
+                                fire.transform.localPosition = Vector3.zero;
+                                break;
+
+                            case EnvironmentElement.ElementType.AIR:
+
+                                GameObject air = Instantiate(Elements.Instance.airOrb, holdPoint);
+                                air.transform.localPosition = Vector3.zero;
+                                break;
+
+                            case EnvironmentElement.ElementType.EARTH:
+
+                                GameObject earth = Instantiate(Elements.Instance.earthOrb, holdPoint);
+                                earth.transform.localPosition = Vector3.zero;
+                                break;
+
+                            case EnvironmentElement.ElementType.WATER:
+
+                                GameObject water = Instantiate(Elements.Instance.waterOrb, holdPoint);
+                                water.transform.localPosition = Vector3.zero;
+                                break;
+
+                            case EnvironmentElement.ElementType.STEAM:
+
+                                GameObject steam = Instantiate(Elements.Instance.steamOrb, holdPoint);
+                                steam.transform.localPosition = Vector3.zero;
+                                break;
+
+                            default:
+                                break;
                         }
                     }
 
 
-
-                    switch (elem)
-                    {
-                        case EnvironmentElement.ElementType.FIRE:
-
-                            GameObject fire = Instantiate(Elements.Instance.fireOrb, holdPoint);
-                            fire.transform.localPosition = Vector3.zero;
-                            break;
-
-                        case EnvironmentElement.ElementType.AIR:
-
-                            GameObject air = Instantiate(Elements.Instance.airOrb, holdPoint);
-                            air.transform.localPosition = Vector3.zero;
-                            break;
-
-                        case EnvironmentElement.ElementType.EARTH:
-
-                            GameObject earth = Instantiate(Elements.Instance.earthOrb, holdPoint);
-                            earth.transform.localPosition = Vector3.zero;
-                            break;
-
-                        case EnvironmentElement.ElementType.WATER:
-
-                            GameObject water = Instantiate(Elements.Instance.waterOrb, holdPoint);
-                            water.transform.localPosition = Vector3.zero;
-                            break;
-
-                        case EnvironmentElement.ElementType.STEAM:
-
-                            GameObject steam = Instantiate(Elements.Instance.steamOrb, holdPoint);
-                            steam.transform.localPosition = Vector3.zero;
-                            break;
-
-                        default:
-                            break;
-                    }
                 }
-
-
-            }
-            else if (hit.transform.CompareTag("DoorButton"))
-            {
-                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
-                if (Input.GetKeyDown(KeyCode.E))
+                else if (hit.transform.CompareTag("DoorButton"))
                 {
-                    if (hit.transform.GetComponent<DoorButton>())
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.GRAB);
+                    if (Input.GetKeyDown(KeyCode.E))
                     {
-                        hit.transform.GetComponent<DoorButton>().Activated();
+                        if (hit.transform.GetComponent<DoorButton>())
+                        {
+                            hit.transform.GetComponent<DoorButton>().Activated();
+                        }
                     }
+
                 }
+                else if (holdPoint.childCount > 0)
+                {
+                    var heldItem = holdPoint.GetChild(0);
+                    Debug.Log(hit.transform);
+                    Holders(hit, heldItem);
 
+
+
+                }
             }
-            else if (holdPoint.childCount > 0)
+            else
             {
-                var heldItem = holdPoint.GetChild(0);
-                Debug.Log(hit.transform);
-                Holders(hit, heldItem);
-
-
+                if (UIManager.Instance)
+                {
+                    UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
+                }
 
             }
         }
-        else
-        {
-            if (UIManager.Instance)
-            {
-                UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DEFAULT);
-            }
-            
-        }
+        
 
 
         HeldItems();
@@ -196,6 +202,10 @@ public class Interact : MonoBehaviour
             else if (puzzle4)
             {
                 GameManager.Instance.ResetPuzzle4();
+            }
+            else if (puzzle5)
+            {
+                GameManager.Instance.ResetPuzzle5();
             }
         }
     }
@@ -440,6 +450,10 @@ public class Interact : MonoBehaviour
         {
             puzzle4 = true;
         }
+        else if (other.CompareTag("Puzzle5"))
+        {
+            puzzle5 = true;
+        }
 
     }
 
@@ -471,6 +485,10 @@ public class Interact : MonoBehaviour
         else if (other.CompareTag("Puzzle4"))
         {
             puzzle4 = false;
+        }
+        else if (other.CompareTag("Puzzle5"))
+        {
+            puzzle5 = false;
         }
     }
 

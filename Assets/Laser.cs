@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Laser : MonoBehaviour
@@ -15,16 +14,20 @@ public class Laser : MonoBehaviour
     public float rockMineTime;
     float rockTimer;
     GameObject vine;
+    public bool fireLaser;
+    public Collider reflector;
+    [HideInInspector] public Collider button;
 
     // Start is called before the first frame update
     void Start()
     {
-        lr.SetPosition(0, start.position);
+        lr.useWorldSpace = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        lr.SetPosition(0, start.position);
         LaserRaycast();
         VineDestroy();
 
@@ -34,40 +37,102 @@ public class Laser : MonoBehaviour
 
     void LaserRaycast()
     {
-        if (lr.gameObject.activeSelf)
+        if (fireLaser)
         {
-            if (Physics.Raycast(start.position, start.forward, out hit, range))
+            lr.enabled = true;
+            if (lr.gameObject.activeSelf)
             {
-                if (hit.collider)
+                if (Physics.Raycast(start.position, start.forward, out hit, range))
                 {
-                    lr.SetPosition(1, hit.point);
+                    if (hit.collider)
+                    {
+                        lr.SetPosition(1, hit.point);
 
-                    if (hit.transform.CompareTag("ClimbableVines"))
-                    {
-                        vine = hit.collider.gameObject;
-                    }
-                    else if (hit.transform.CompareTag("Rock"))
-                    {
-                        HitRock();
+                        if (hit.transform.CompareTag("ClimbableVines"))
+                        {
+                            vine = hit.collider.gameObject;
+                        }
+                        else if (hit.transform.CompareTag("Rock"))
+                        {
+                            HitRock();
+                        }
+                        else if (hit.collider.GetComponent<Reflector>())
+                        {
+                            hit.collider.GetComponent<Laser>().fireLaser = true;
+                            hit.collider.GetComponent<Reflector>().parentLaser = this;
+                            reflector = hit.collider;
+                        }
+
+
+                        if (hit.collider.GetComponent<LaserActivation>())
+                        {
+                            hit.collider.GetComponent<LaserActivation>().isActivated = true;
+                            hit.collider.GetComponent<LaserActivation>().parentLaser = this;
+
+                            button = hit.collider;
+                        }
+                        else
+                        {
+                            button = null;
+                        }
+
+
+                        if (reflector)
+                        {
+                            if (hit.collider != reflector)
+                            {
+                                reflector.GetComponent<Laser>().fireLaser = false;
+                                if (hit.collider.GetComponent<Reflector>())
+                                {
+                                    if (hit.collider.GetComponent<Reflector>().parentLaser)
+                                    {
+                                        hit.collider.GetComponent<Reflector>().parentLaser = null;
+                                    }
+                                }
+  
+                                
+                                reflector = null;
+                            }
+                        }
+
+
+
+                        if (hit.transform.CompareTag("LaserTarget"))
+                        {
+                            isActive = true;
+                        }
+                        else
+                        {
+                            isActive = false;
+                        }
+
+
                     }
 
 
-                    if (hit.transform.CompareTag("LaserTarget"))
-                    {
-                        isActive = true;
-                    }
-                    else
-                    {
-                        isActive = false;
-                    }
+
+
                 }
-
-
+                else
+                {
+                    
+                    lr.SetPosition(1, start.forward * range);
+                }
             }
             else
             {
-                lr.SetPosition(1, start.forward * range);
+                if (reflector)
+                {
+                    reflector.GetComponent<Laser>().fireLaser = false;
+                    reflector = null;
+                }
             }
+
+        }
+        else
+        {
+
+            lr.enabled = false;
         }
 
     }
@@ -83,7 +148,7 @@ public class Laser : MonoBehaviour
             if (hit.transform.localScale.x <= 0.3f)
             {
                 hit.transform.gameObject.layer = 3;
-                var pickupable = hit.transform.AddComponent<Pickupable>();
+                var pickupable = hit.transform.gameObject.AddComponent<Pickupable>();
                 pickupable.destroyOnPickup = true;
                 pickupable.dropOnSwitch = true;
             }

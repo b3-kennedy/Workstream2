@@ -294,6 +294,7 @@ MonoBehaviour:
   isActive: 0
   vineDestroyTime: 5
   rockMineTime: 0.5
+  fireLaser: 1
 --- !u!1 &7756866978688433771
 GameObject:
   m_ObjectHideFlags: 0
