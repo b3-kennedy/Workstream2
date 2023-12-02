@@ -109,6 +109,7 @@ public class Interact : MonoBehaviour
                             case EnvironmentElement.ElementType.FIRE:
 
                                 GameObject fire = Instantiate(Elements.Instance.fireOrb, holdPoint);
+                                fire.transform.rotation = holdPoint.transform.rotation;
                                 fire.transform.localPosition = Vector3.zero;
                                 break;
 
@@ -234,6 +235,10 @@ public class Interact : MonoBehaviour
                     heldItem.GetComponent<Tool>().Use();
                 }
             }
+            else if (heldItem.GetComponent<OrbOfPower>())
+            {
+                heldItem.GetComponent<LineRenderer>().enabled = true;
+            }
 
             if (heldItem.GetComponent<Pickupable>().dropOnSwitch)
             {
@@ -264,6 +269,7 @@ public class Interact : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
                 {
+                    heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                     Drop(hit.transform);
                     heldItem.GetComponent<ElementalOrb>().enabled = false;
                 }
@@ -453,6 +459,16 @@ public class Interact : MonoBehaviour
         else if (other.CompareTag("Puzzle5"))
         {
             puzzle5 = true;
+        }
+        else if (other.CompareTag("AirUpgrade"))
+        {
+            GameManager.Instance.bonusAirTime += 5;
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("EarthUpgrade"))
+        {
+            GameManager.Instance.bonusEarthTime += 0.1f;
+            Destroy(other.gameObject);
         }
 
     }

@@ -48,6 +48,8 @@ TagManager:
   - FinalDeposit
   - FinalOrb
   - Puzzle5
+  - AirUpgrade
+  - EarthUpgrade
   layers:
   - Default
   - TransparentFX

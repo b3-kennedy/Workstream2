@@ -33,6 +33,8 @@ public class Pickaxe : Tool
             Debug.Log(hit.collider.gameObject);
             if (hit.collider.CompareTag("Rock"))
             {
+                AudioSource.PlayClipAtPoint(pickHit, hit.point);
+
                 hit.transform.localScale *= 0.9f;
                 hit.transform.GetComponent<Rigidbody>().mass *= 0.9f;
 

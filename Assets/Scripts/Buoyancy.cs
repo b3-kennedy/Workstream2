@@ -10,6 +10,7 @@ public class Buoyancy : MonoBehaviour
     public bool inWater;
     protected bool playerOnPlatform;
     Rigidbody rb;
+    bool changedDrag;
 
     private void Start()
     {
@@ -21,9 +22,19 @@ public class Buoyancy : MonoBehaviour
     {
         if (other.CompareTag("WaterArea"))
         {
+            changedDrag = false;
             inWater = true;
             rb.drag = 5;
             
+        }
+    }
+
+    private void Update()
+    {
+        if(!inWater && !changedDrag)
+        {
+            rb.drag = 0.05f;
+            changedDrag = true;
         }
     }
 

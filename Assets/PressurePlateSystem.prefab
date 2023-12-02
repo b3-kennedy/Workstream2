@@ -153,6 +153,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeAnimator: {fileID: 8123792403182741415}
+  activated: 0
+  door: {fileID: 0}
+  opposite: 0
+  minMass: 0
+  doorClang: {fileID: 8300000, guid: 26209be2cc7325d4a90e92a353256c21, type: 3}
 --- !u!95 &6972872676658878358
 Animator:
   serializedVersion: 5

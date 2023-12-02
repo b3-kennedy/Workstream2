@@ -91,13 +91,13 @@ public class EarthOrb : ElementalOrb
                 timer += Time.deltaTime;
 
 
-                transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime)/5f;
+                transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime)/(5f + GameManager.Instance.bonusEarthTime);
 
                 
 
                 spawnedVine.transform.localScale = new Vector3(growth, spawnedVine.transform.localScale.y, spawnedVine.transform.localScale.z);
 
-                if (timer >= maxGrowTime)
+                if (timer >= maxGrowTime + GameManager.Instance.bonusEarthTime)
                 {
                     Destroy(gameObject);
                 }

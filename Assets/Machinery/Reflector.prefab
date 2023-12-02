@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 6531471295772153054}
   - component: {fileID: 6075678230517001346}
   - component: {fileID: 4928267481454326629}
+  - component: {fileID: 6224460830677929622}
   m_Layer: 0
   m_Name: Reflector
   m_TagString: Untagged
@@ -494,6 +495,7 @@ MonoBehaviour:
   rockMineTime: 0.5
   fireLaser: 0
   reflector: {fileID: 0}
+  button: {fileID: 0}
 --- !u!54 &6531471295772153054
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -549,3 +551,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotation: {x: 0, y: -10, z: 0}
   range: 0
+--- !u!114 &6224460830677929622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121990974392070987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adca2301f235bb84e9b184708726b59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseBuoyancyForce: 12.72
+  inWater: 0

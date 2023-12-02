@@ -6,13 +6,14 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public Animator cubeAnimator;
-    private bool activated = false;
+    public bool activated = false;
     private bool paused = false;
     private string SlideUp = "SlideUp";
     private string SlideDown = "SlideDown";
     public GameObject door;
     public bool opposite;
     public float minMass;
+    public AudioClip doorClang;
 
 
 
@@ -46,10 +47,12 @@ public class PressurePlate : MonoBehaviour
                     if (opposite)
                     {
                         door.SetActive(true);
+                        
                     }
                     else
                     {
                         door.SetActive(false);
+                        AudioSource.PlayClipAtPoint(doorClang, door.transform.position);
                     }
                 }
             }

@@ -12,6 +12,10 @@ public class PressurePlateScreen : MonoBehaviour
     public WeightTrigger plate;
     public GameObject door;
 
+    public Material green;
+    public Material red;
+    public Renderer indicator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,10 +31,12 @@ public class PressurePlateScreen : MonoBehaviour
         if (plate.weight >= minMass)
         {
             door.SetActive(false);
+            indicator.material = green;
         }
         else
         {
             door.SetActive(true);
+            indicator.material = red;
         }
     }
 }

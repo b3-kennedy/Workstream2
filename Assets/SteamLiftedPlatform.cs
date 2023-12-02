@@ -80,7 +80,7 @@ public class SteamLiftedPlatform : MonoBehaviour
     {
         if (other.GetComponent<FirstPersonMovement>())
         {
-            other.transform.SetParent(transform);
+            other.transform.SetParent(transform, true);
         }
     }
 

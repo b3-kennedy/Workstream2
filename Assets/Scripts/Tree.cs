@@ -32,6 +32,10 @@ public class Tree : Burnable
 
     public override void OnFireDestroy()
     {
-        Instantiate(burnedTreeStump, transform.position, Quaternion.identity);
+        if(burnedTreeStump != null)
+        {
+            Instantiate(burnedTreeStump, transform.position, Quaternion.identity);
+        }
+        
     }
 }

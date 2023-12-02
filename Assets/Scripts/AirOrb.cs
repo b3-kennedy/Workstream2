@@ -5,7 +5,7 @@ using UnityEngine;
 public class AirOrb : ElementalOrb
 {
     public float dissipateTime;
-    float timer;
+    public float timer;
     public float range;
     public float force;
     public float buoyantPlatformForce;
@@ -49,7 +49,7 @@ public class AirOrb : ElementalOrb
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer >= dissipateTime)
+        if(timer >= dissipateTime + GameManager.Instance.bonusAirTime)
         {
             Destroy(gameObject);
             timer = 0;
@@ -58,14 +58,13 @@ public class AirOrb : ElementalOrb
 
     private void OnDisable()
     {
-        timer = dissipateTime;
+        timer = 0;
     }
 
     public override void UI()
     {
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
         {
-            Debug.Log(hit.collider.gameObject);
 
             if (hit.collider.CompareTag("Rotor"))
             {

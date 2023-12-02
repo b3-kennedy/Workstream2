@@ -10,6 +10,7 @@ public class FillArea : MonoBehaviour
     public bool rise;
     public float timeToRise;
     public float timer;
+    public float heightBuffer;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class FillArea : MonoBehaviour
     {
         if(transform.childCount <= 0)
         {
-            water = Instantiate(waterObj, new Vector3(transform.position.x, transform.position.y- GetComponent<BoxCollider>().size.y / 2, transform.position.z), Quaternion.identity);
+            water = Instantiate(waterObj, new Vector3(transform.position.x, transform.position.y- (GetComponent<BoxCollider>().size.y / 2) + heightBuffer, transform.position.z), Quaternion.identity);
             water.transform.SetParent(transform);
             water.transform.localScale = new Vector3(GetComponent<BoxCollider>().size.x, .01f, GetComponent<BoxCollider>().size.z);
             rise = true;

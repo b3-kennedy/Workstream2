@@ -133,6 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf20604a35c366245b82041404ef34c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 5
   water: {fileID: 8300000, guid: f62f2cc672855784e8bb03f50fb69998, type: 3}
   steamAudio: {fileID: 8300000, guid: 978502130e5f14346b9f9d9c7d58dda7, type: 3}

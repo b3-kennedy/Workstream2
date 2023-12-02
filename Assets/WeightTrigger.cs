@@ -55,10 +55,10 @@ public class WeightTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.GetComponent<FirstPersonMovement>())
-        {
-            weight -= 50;
-        }
+        //if (other.GetComponent<FirstPersonMovement>())
+        //{
+        //    weight -= 50;
+        //}
     }
 
     private void Update()

@@ -54,6 +54,10 @@ public class GameManager : MonoBehaviour
     public LineRenderer fireTower;
     public LineRenderer waterTower;
 
+    [Header("Upgrades")]
+    public float bonusAirTime;
+    public float bonusEarthTime;
+
     
 
    
