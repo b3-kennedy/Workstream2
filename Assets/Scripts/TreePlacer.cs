@@ -18,12 +18,13 @@ public class TreePlacer : MonoBehaviour
     int index;
     string path = Application.dataPath + "/StreamingAssets/treepositions.txt";
     public List<string> lines = new List<string>();
+    public Transform treesParent;
 
     // Start is called before the first frame update
     void Start()
     {
 
-
+        Debug.Log(path);
         Instance = this;
         StreamWriter writer = new StreamWriter(path, true);
         foreach (var terrain in terrains)
@@ -62,7 +63,8 @@ public class TreePlacer : MonoBehaviour
         {
             string[] split = l.Split(',');
             Vector3 pos = new Vector3(float.Parse(split[0]), float.Parse(split[1]), float.Parse(split[2]));
-            Instantiate(treePrefabs[0], pos, Quaternion.identity);
+            GameObject newTree = Instantiate(treePrefabs[0], pos, Quaternion.identity);
+            newTree.transform.SetParent(treesParent);
         }
 
 

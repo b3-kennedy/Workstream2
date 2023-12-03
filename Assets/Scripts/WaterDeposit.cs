@@ -5,6 +5,9 @@ using UnityEngine;
 public class WaterDeposit : MonoBehaviour
 {
     public LineRenderer waterTowerLr;
+    public GameObject tip;
+    public GameObject portal1;
+    public GameObject portal2;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +15,9 @@ public class WaterDeposit : MonoBehaviour
         {
             waterTowerLr.enabled = true;
             Destroy(other.gameObject);
+            tip.SetActive(true);
+            portal1.SetActive(true);
+            portal2.SetActive(true);
         }
     }
 }

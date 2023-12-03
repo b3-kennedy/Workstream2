@@ -34,6 +34,10 @@ public class Interact : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             UIManager.Instance.PauseMenu();
+            if (UIManager.Instance.settingsPanel.activeSelf)
+            {
+                UIManager.Instance.CloseSettings();
+            }
         }
     }
 
@@ -221,7 +225,7 @@ public class Interact : MonoBehaviour
 
                 heldItem.GetComponent<ElementalOrb>().UI();
 
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && !UIManager.Instance.pauseMenu.activeSelf)
                 {
                     heldItem.GetComponent<ElementalOrb>().Use();
                 }
@@ -230,7 +234,7 @@ public class Interact : MonoBehaviour
             else if (heldItem.GetComponent<Tool>())
             {
                 heldItem.GetComponent<Tool>().UI();
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && !UIManager.Instance.pauseMenu.activeSelf)
                 {
                     heldItem.GetComponent<Tool>().Use();
                 }

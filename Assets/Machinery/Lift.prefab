@@ -505,8 +505,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.67199236, y: 2.0941517, z: 1.9653624}
-  m_Center: {x: 0.114391744, y: 0.026189566, z: 0.012825787}
+  m_Size: {x: 1.0612826, y: 2.2867463, z: 2.3548493}
+  m_Center: {x: -0.08025345, y: 0.07488799, z: 0.0013718605}
 --- !u!114 &420230041905173108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,6 +523,7 @@ MonoBehaviour:
   canRotate: 0
   rotateSpeed: 1000
   stopTime: 5
+  noStop: 0
 --- !u!1 &9062162713837519864
 GameObject:
   m_ObjectHideFlags: 0

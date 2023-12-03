@@ -50,6 +50,7 @@ TagManager:
   - Puzzle5
   - AirUpgrade
   - EarthUpgrade
+  - Tip
   layers:
   - Default
   - TransparentFX
