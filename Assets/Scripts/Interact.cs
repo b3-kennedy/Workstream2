@@ -195,22 +195,42 @@ public class Interact : MonoBehaviour
             if (puzzle1)
             {
                 GameManager.Instance.ResetPuzzle1();
+                if(holdPoint.childCount > 0)
+                {
+                    Destroy(holdPoint.GetChild(0).gameObject);
+                }
             }
             else if (puzzle2)
             {
                 GameManager.Instance.ResetPuzzle2();
+                if (holdPoint.childCount > 0)
+                {
+                    Destroy(holdPoint.GetChild(0).gameObject);
+                }
             }
             else if (puzzle3)
             {
                 GameManager.Instance.ResetPuzzle3();
+                if (holdPoint.childCount > 0)
+                {
+                    Destroy(holdPoint.GetChild(0).gameObject);
+                }
             }
             else if (puzzle4)
             {
                 GameManager.Instance.ResetPuzzle4();
+                if (holdPoint.childCount > 0)
+                {
+                    Destroy(holdPoint.GetChild(0).gameObject);
+                }
             }
             else if (puzzle5)
             {
                 GameManager.Instance.ResetPuzzle5();
+                if (holdPoint.childCount > 0)
+                {
+                    Destroy(holdPoint.GetChild(0).gameObject);
+                }
             }
         }
     }
