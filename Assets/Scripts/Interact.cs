@@ -287,16 +287,39 @@ public class Interact : MonoBehaviour
         if (hit.transform.GetComponent<ItemHolder>())
         {
             UIManager.Instance.ChangeCrosshairState(UIManager.CrosshairState.DROP);
-            
 
-            if (heldItem.CompareTag("Element"))
+            if (heldItem.GetComponent<ElementalOrb>())
             {
-                if (Input.GetKeyDown(KeyCode.E) && hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
-                    heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
-                    Drop(hit.transform);
-                    heldItem.GetComponent<ElementalOrb>().enabled = false;
+                    if (hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.ELEMENT))
+                    {
+                        heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                        Drop(hit.transform);
+                        heldItem.GetComponent<ElementalOrb>().enabled = false;
+                    }
+                    if (hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.FIRE))
+                    {
+                        if (heldItem.GetComponent<FireOrb>())
+                        {
+                            heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                            Drop(hit.transform);
+                            heldItem.GetComponent<ElementalOrb>().enabled = false;
+                        }
+
+                    }
+                    else if (hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.WATER))
+                    {
+                        if (heldItem.GetComponent<WaterOrb>())
+                        {
+                            heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                            Drop(hit.transform);
+                            heldItem.GetComponent<ElementalOrb>().enabled = false;
+                        }
+
+                    }
                 }
+
             }
             if (heldItem.CompareTag("Untagged"))
             {

@@ -7,7 +7,7 @@ public class ItemHolder : MonoBehaviour
 
     public int maxItems;
     public bool parentToChild;
-    public enum PrefferedObject {ELEMENT, DEFAULT, CHARCOAL};
+    public enum PrefferedObject {ELEMENT, DEFAULT, CHARCOAL, FIRE, WATER, WOOD};
     public PrefferedObject prefferedObject;
 
     public bool CanPlace(PrefferedObject obj)

@@ -1378,7 +1378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItems: 1
   parentToChild: 1
-  prefferedObject: 0
+  prefferedObject: 4
 --- !u!1 &3515024271861052138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1612,11 @@ MonoBehaviour:
   water: 0
   fire: 0
   wood: 0
+  onDuration: 0
+  burnTimer: 0
+  door: {fileID: 0}
+  activatableObjectsOnComplete: []
+  deactivatableObjectsOnComplete: []
 --- !u!1 &4813542764616334288
 GameObject:
   m_ObjectHideFlags: 0
@@ -2154,7 +2159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxItems: 1
   parentToChild: 1
-  prefferedObject: 0
+  prefferedObject: 3
 --- !u!1 &7221414923446414889
 GameObject:
   m_ObjectHideFlags: 0
