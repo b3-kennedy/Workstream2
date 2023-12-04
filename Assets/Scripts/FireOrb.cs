@@ -30,7 +30,6 @@ public class FireOrb : ElementalOrb
         //temporary raycast, ideally would use particle collision
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
         {
-            Debug.Log(hit.collider.gameObject);
 
             if (hit.collider.GetComponent<Burnable>())
             {

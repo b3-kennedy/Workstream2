@@ -114,12 +114,10 @@ public class EarthOrb : ElementalOrb
 
     public override void UI()
     {
-        Debug.Log("UI");
 
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hit, range))
         {
 
-            Debug.Log("in raycast");
 
             if (hit.normal.x == 1)
             {
