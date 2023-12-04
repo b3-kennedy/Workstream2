@@ -300,7 +300,7 @@ public class Interact : MonoBehaviour
                     }
                     if (hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.FIRE))
                     {
-                        if (heldItem.GetComponent<FireOrb>())
+                        if (heldItem.GetComponent<FireOrb>() || heldItem.GetComponent<SteamOrb>())
                         {
                             heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                             Drop(hit.transform);
@@ -310,7 +310,7 @@ public class Interact : MonoBehaviour
                     }
                     else if (hit.transform.GetComponent<ItemHolder>().CanPlace(ItemHolder.PrefferedObject.WATER))
                     {
-                        if (heldItem.GetComponent<WaterOrb>())
+                        if (heldItem.GetComponent<WaterOrb>() || heldItem.GetComponent<SteamOrb>())
                         {
                             heldItem.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
                             Drop(hit.transform);
