@@ -42016,6 +42016,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===PUZZLE 3 OBJECTS===
       objectReference: {fileID: 0}
+    - target: {fileID: 7112970585830693613, guid: a3034abb52cf6524c8348a2803ff6bb0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.6594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7112970585830693613, guid: a3034abb52cf6524c8348a2803ff6bb0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.8078
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
