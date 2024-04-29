@@ -3,12 +3,59 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Fire
+  - Climbable
+  - StartClimb
+  - EndClimb
+  - Element
+  - Water
+  - Rotor
+  - Burnable
+  - Grow
+  - DoorButton
+  - ClimbableVines
+  - WaterFillZone
+  - WaterArea
+  - Rock
+  - Boulder
+  - AirLift
+  - Charcoal
+  - ControlPanel
+  - NoEarth
+  - BuoyantPlatform
+  - ControlPanelInside
+  - AirTowerDoor
+  - Exit
+  - Portal
+  - AirDeposit
+  - AirOrb
+  - EarthDeposit
+  - EarthOrb
+  - FireOrb
+  - FireDeposit
+  - CaveEntrance
+  - CaveExit
+  - TerrainEntrance
+  - TerrainExit
+  - LaserTarget
+  - WaterOrb
+  - WaterDeposit
+  - Puzzle1
+  - Puzzle2
+  - Puzzle3
+  - Puzzle4
+  - FinalDeposit
+  - FinalOrb
+  - Puzzle5
+  - AirUpgrade
+  - EarthUpgrade
+  - Tip
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Interactable
   - Water
   - UI
   - 
